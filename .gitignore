@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/hieutran02grc.WebBanSach/.vs/hieutran02grc.WebBanSach
+/hieutran02grc.WebBanSach/hieutran02grc.WebBanSach/bin/Debug/net6.0
+/hieutran02grc.WebBanSach/hieutran02grc.WebBanSach/obj
