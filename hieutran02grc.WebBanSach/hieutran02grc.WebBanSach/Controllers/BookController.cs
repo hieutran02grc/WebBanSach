@@ -9,9 +9,16 @@ namespace hieutran02grc.WebBanSach.Controllers
             return "All books";
         }
 
+        public ViewResult GetBook()
+        {
+            return View();
+        }
+
+
         public IActionResult Index()
         {
             return View();
         }
+
     }
 }

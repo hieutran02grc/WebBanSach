@@ -1,19 +1,30 @@
-﻿namespace hieutran02grc.WebBanSach
+﻿using hieutran02grc.WebBanSach.Data;
+using Microsoft.EntityFrameworkCore;
+using System.Configuration;
+
+namespace hieutran02grc.WebBanSach
 {
     public class Startup
     {
-        public IConfiguration configRoot
-        {
-            get;
-        }
+        private readonly IConfiguration _configuration;
+        
         public Startup(IConfiguration configuration)
         {
-            configRoot = configuration;
+            _configuration = configuration;
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<BookStoreContext>(
+                options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
+
+            //services.AddDbContext<BookStoreContext>(
+            //    options => options.UseSqlServer("Server=.;initial catalog=master;Database=BookStore;Integrated Security=True;User=HIEUXUOG;Password=123;"));
+
             services.AddRazorPages();
             services.AddControllersWithViews();
+#if DEBUG
+            //services.AddRazorPages().AddRazorRuntimeCompilation();
+#endif
         }
         public void Configure(WebApplication app, IWebHostEnvironment env)
         {
@@ -33,7 +44,7 @@
             {
                 endpoints.MapDefaultControllerRoute();
 
-                //endpoints.MapDefaultControllerRoute();
+                endpoints.MapDefaultControllerRoute();
                 ////endpoints.MapControllerRoute(
                 ////    name: "Default",
                 ////    pattern: "bookApp/{controller=Home}/{action=Index}/{id?}");
