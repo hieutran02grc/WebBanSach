@@ -1,21 +1,8 @@
+using hieutran02grc.WebBanSach;
+using Microsoft.AspNetCore.Http;
+
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddRazorPages();
-
+var startup = new Startup(builder.Configuration);
+startup.ConfigureServices(builder.Services); // calling ConfigureServices method
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-}
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapRazorPages();
-
-app.Run();
+startup.Configure(app, builder.Environment); // calling Configure method
