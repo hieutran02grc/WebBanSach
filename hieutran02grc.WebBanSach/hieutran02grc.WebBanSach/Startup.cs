@@ -16,14 +16,11 @@ namespace hieutran02grc.WebBanSach
         {
             services.AddDbContext<BookStoreContext>(
                 options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
-
-            //services.AddDbContext<BookStoreContext>(
-            //    options => options.UseSqlServer("Server=.;initial catalog=master;Database=BookStore;Integrated Security=True;User=HIEUXUOG;Password=123;"));
-
             services.AddRazorPages();
             services.AddControllersWithViews();
 #if DEBUG
-            //services.AddRazorPages().AddRazorRuntimeCompilation();
+            
+
 #endif
         }
         public void Configure(WebApplication app, IWebHostEnvironment env)
@@ -34,24 +31,22 @@ namespace hieutran02grc.WebBanSach
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
             //app.UseAuthorization();
-            //app.MapRazorPages();
+            app.MapRazorPages();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
-
-                endpoints.MapDefaultControllerRoute();
-                ////endpoints.MapControllerRoute(
-                ////    name: "Default",
-                ////    pattern: "bookApp/{controller=Home}/{action=Index}/{id?}");
-
                 //endpoints.MapControllerRoute(
-                //    name: "MyArea",
-                //    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                //    name: "Default",
+                //    pattern: "bookApp/{controller=Home}/{action=Index}/{id?}");
+                 
+                endpoints.MapControllerRoute(
+                    name: "MyArea",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
             });
 
             app.Run();
