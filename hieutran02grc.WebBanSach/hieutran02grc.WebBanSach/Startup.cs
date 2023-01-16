@@ -1,4 +1,5 @@
 ﻿using hieutran02grc.WebBanSach.Data;
+using hieutran02grc.WebBanSach.Repository;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 
@@ -18,10 +19,13 @@ namespace hieutran02grc.WebBanSach
                 options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
             services.AddRazorPages();
             services.AddControllersWithViews();
+
 #if DEBUG
-            
+
 
 #endif
+            services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<ILanguageRepository, LanguageRepository>();
         }
         public void Configure(WebApplication app, IWebHostEnvironment env)
         {

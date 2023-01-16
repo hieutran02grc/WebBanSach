@@ -1,5 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using hieutran02grc.WebBanSach.Enums;
+using Microsoft.AspNetCore.Http;
 namespace hieutran02grc.WebBanSach.Models
 {
     public class BookModel
@@ -8,10 +13,13 @@ namespace hieutran02grc.WebBanSach.Models
         [StringLength(100, MinimumLength = 5)]
         [Required(ErrorMessage = "Please enter the title of your book")]
         public string Title { get; set; }
+
         [Required(ErrorMessage = "Please enter the author name")]
         public string Author { get; set; }
+
         [StringLength(500)]
         public string Description { get; set; }
+
         public string Category { get; set; }
         //[Required(ErrorMessage = "Please choose the language of your book")]
         public int LanguageId { get; set; }

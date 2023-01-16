@@ -15,6 +15,12 @@ namespace hieutran02grc.WebBanSach.Repository
         private readonly BookStoreContext _context = null;
         private readonly IConfiguration _configuration;
 
+        public BookRepository(BookStoreContext context, IConfiguration configuration)
+        {
+            _context = context;
+            _configuration = configuration;
+        }
+
         public async Task<int> AddNewBook(BookModel model)
         {
             var newBook = new Books()
@@ -53,11 +59,6 @@ namespace hieutran02grc.WebBanSach.Repository
             throw new NotImplementedException();
         }
 
-        public string GetAppName()
-        {
-            throw new NotImplementedException();
-        }
-
         public Task<BookModel> GetBookById(int id)
         {
             throw new NotImplementedException();
@@ -71,6 +72,11 @@ namespace hieutran02grc.WebBanSach.Repository
         public List<BookModel> SearchBook(string title, string authorName)
         {
             throw new NotImplementedException();
+        }
+
+        public string GetAppName()
+        {
+            return _configuration["AppName"];
         }
     }
 }
