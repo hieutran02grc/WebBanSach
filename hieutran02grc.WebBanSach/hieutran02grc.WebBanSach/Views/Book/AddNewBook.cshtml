@@ -1,5 +1,6 @@
 ﻿@using hieutran02grc.WebBanSach.Enums
 @inject hieutran02grc.WebBanSach.Repository.ILanguageRepository _languageRepo
+@inject hieutran02grc.WebBanSach.Repository.ICategoryRepository _categoryRepo
 @model BookModel
 @{
     ViewData["Title"] = "Add new book";
@@ -27,6 +28,15 @@
                 <option value="">Please choose your language</option>
             </select>
             <span asp-validation-for="LanguageId" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="Category" class="control-label"></label>
+            <select asp-for="Category" class="form-control" asp-items="(await _categoryRepo.GetCategorys()).Select(x=> new SelectListItem() { Text = x.CategoryName, Value = x.CategoryId.ToString()})">
+                <option value="">Please choose your category</option>
+            </select>
+            <span asp-validation-for="Category" class="text-danger"></span>
         </div>
 
         <div class="form-group">

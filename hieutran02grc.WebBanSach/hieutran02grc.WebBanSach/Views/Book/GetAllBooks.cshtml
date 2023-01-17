@@ -1,7 +1,18 @@
-﻿
-@{
-    ViewData["Title"] = "GetAllBooks";
+﻿@{
+    ViewData["Title"] = "All books";
 }
+@model IEnumerable<BookModel>
 
-<h1>GetAllBooks</h1>
+<div class="container">
+    <h3 class="display-4">All books</h3>
+    <div class="row">
 
+        @foreach (var book in Model)
+        {
+            <div class="col-md-4">
+                <partial name="_bookThumbnail" model="@book" />
+            </div>
+        }
+
+    </div>
+</div>

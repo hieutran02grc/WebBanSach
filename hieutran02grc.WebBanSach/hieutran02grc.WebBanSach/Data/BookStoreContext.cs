@@ -24,5 +24,7 @@ namespace hieutran02grc.WebBanSach.Data
 
         public DbSet<Language> Language { get; set; }
 
+        public DbSet<Category> Category { get; set; }
+
     }
 }

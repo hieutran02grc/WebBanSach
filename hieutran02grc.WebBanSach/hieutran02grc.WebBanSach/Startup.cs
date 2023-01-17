@@ -26,6 +26,7 @@ namespace hieutran02grc.WebBanSach
 #endif
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
         }
         public void Configure(WebApplication app, IWebHostEnvironment env)
         {

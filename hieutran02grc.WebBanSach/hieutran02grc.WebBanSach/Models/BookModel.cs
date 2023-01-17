@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using hieutran02grc.WebBanSach.Enums;
 using Microsoft.AspNetCore.Http;
+using System.Diagnostics.CodeAnalysis;
+
 namespace hieutran02grc.WebBanSach.Models
 {
     public class BookModel
@@ -18,12 +20,13 @@ namespace hieutran02grc.WebBanSach.Models
         public string Author { get; set; }
 
         [StringLength(500)]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
-        public string Category { get; set; }
+        
+        public string? Category { get; set; }
         //[Required(ErrorMessage = "Please choose the language of your book")]
         public int LanguageId { get; set; }
-        public string Language { get; set; }
+        public string? Language { get; set; }
 
         [Required(ErrorMessage = "Please enter the total pages")]
         [Display(Name = "Total pages of book")]
@@ -31,18 +34,19 @@ namespace hieutran02grc.WebBanSach.Models
 
         [Display(Name = "Choose the cover photo of your book")]
         [Required]
-        public IFormFile CoverPhoto { get; set; }
-        public string CoverImageUrl { get; set; }
+        public IFormFile? CoverPhoto { get; set; }
+        public string? CoverImageUrl { get; set; }
 
         [Display(Name = "Choose the gallery images of your book")]
         [Required]
-        public IFormFileCollection GalleryFiles { get; set; }
+        public IFormFileCollection? GalleryFiles { get; set; }
 
-        public List<GalleryModel> Gallery { get; set; }
+        public List<GalleryModel>? Gallery { get; set; }
 
         [Display(Name = "Upload your book in pdf format")]
         [Required]
-        public IFormFile BookPdf { get; set; }
-        public string BookPdfUrl { get; set; }
+        public IFormFile? BookPdf { get; set; }
+        [AllowNull]
+        public string? BookPdfUrl { get; set; }
     }
 }

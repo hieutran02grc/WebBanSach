@@ -54,14 +54,45 @@ namespace hieutran02grc.WebBanSach.Repository
 
         }
 
-        public Task<List<BookModel>> GetAllBooks()
+        public async Task<List<BookModel>> GetAllBooks()
         {
-            throw new NotImplementedException();
+            return await _context.Books
+                  .Select(book => new BookModel()
+                  {
+                      Author = book.Author,
+                      Category = book.Category,
+                      Description = book.Description,
+                      Id = book.Id,
+                      LanguageId = book.LanguageId,
+                      Language = book.Language.Name,
+                      Title = book.Title,
+                      TotalPages = book.TotalPages,
+                      CoverImageUrl = book.CoverImageUrl
+                  }).ToListAsync();
         }
 
-        public Task<BookModel> GetBookById(int id)
+        public async Task<BookModel> GetBookById(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Books.Where(x => x.Id == id)
+                 .Select(book => new BookModel()
+                 {
+                     Author = book.Author,
+                     Category = book.Category,
+                     Description = book.Description,
+                     Id = book.Id,
+                     LanguageId = book.LanguageId,
+                     Language = book.Language.Name,
+                     Title = book.Title,
+                     TotalPages = book.TotalPages,
+                     CoverImageUrl = book.CoverImageUrl,
+                     Gallery = book.bookGallery.Select(g => new GalleryModel()
+                     {
+                         Id = g.Id,
+                         Name = g.Name,
+                         URL = g.URL
+                     }).ToList(),
+                     BookPdfUrl = book.BookPdfUrl
+                 }).FirstOrDefaultAsync();
         }
 
         public Task<List<BookModel>> GetTopBooksAsync(int count)

@@ -10,8 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-
-
+using hieutran02grc.WebBanSach.Helpers;
 
 namespace hieutran02grc.WebBanSach.Controllers
 {
@@ -66,6 +65,8 @@ namespace hieutran02grc.WebBanSach.Controllers
         [HttpPost]
         public async Task<IActionResult> AddNewBook(BookModel bookModel)
         {
+            //bookModel.Gallery = 0;
+            
             if (ModelState.IsValid)
             {
                 if (bookModel.CoverPhoto != null)
