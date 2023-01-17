@@ -1,5 +1,7 @@
 ﻿using hieutran02grc.WebBanSach.Data;
+using hieutran02grc.WebBanSach.Models;
 using hieutran02grc.WebBanSach.Repository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 
@@ -20,6 +22,9 @@ namespace hieutran02grc.WebBanSach
             services.AddRazorPages();
             services.AddControllersWithViews();
 
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+               .AddEntityFrameworkStores<BookStoreContext>();
+
 #if DEBUG
 
 
@@ -39,7 +44,7 @@ namespace hieutran02grc.WebBanSach
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
-            //app.UseAuthorization();
+            app.UseAuthentication();
             app.MapRazorPages();
 
             app.UseEndpoints(endpoints =>
