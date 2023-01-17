@@ -1,4 +1,4 @@
-﻿@*@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> _signInManager
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> _signInManager
 
 @if (_signInManager.IsSignedIn(User))
 {
@@ -19,4 +19,3 @@ else
         <a class="btn btn-primary" asp-controller="Account" asp-action="Signup">Register</a>
     </li>
 }
-*@
